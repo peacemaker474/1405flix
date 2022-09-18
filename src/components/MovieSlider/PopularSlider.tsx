@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { boxVariants, imgVariants, infoVariants, nowVariants } from '../../styles/variants';
-import { InfoBox, InfoTitle, LeftButton, RightButton, SliderList, SliderLists, SliderWrapper, ToggleBtn } from '../../styles/Slider/wrapper';
+import { InfoBox, InfoTitle, LeftButton, RightButton, SliderList, SliderTitle, SliderLists, SliderWrapper, ToggleBtn } from '../../styles/Slider/wrapper';
 import { makePath } from '../../utiles/makeImagePath';
 import { IMovie } from '../../network/api';
 
@@ -36,6 +36,7 @@ function PopularSlider({ movieData, offset, handleMoveDetail }: IPopularProps) {
 
     return (
         <SliderWrapper>
+            <SliderTitle> 현재 인기가 많은 영화 </SliderTitle>
             <LeftButton onClick={handleDecreaseIndex}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                     <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />

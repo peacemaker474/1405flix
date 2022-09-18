@@ -4,6 +4,18 @@ import { motion } from 'framer-motion';
 export const SliderWrapper = styled.div`
     position: relative;
     top: -100px;
+
+    h1 {
+        position: absolute;
+        top: -50px;
+        left: -50px;
+    }
+`;
+
+export const SliderTitle = styled.h1`
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 0 0 50px 70px;
 `;
 
 export const LeftButton = styled.button`
@@ -52,10 +64,10 @@ export const SliderList = styled(motion.div)`
     cursor: pointer;
     
     &:first-child {
-        transform-origin: center left;
+        transform-origin: center left !important;
     }
     &:last-child {
-        transform-origin: center right;
+        transform-origin: center right !important;
     }
 
     img {
@@ -76,15 +88,23 @@ export const InfoBox = styled(motion.div)`
 `;
 
 export const InfoTitle = styled.h4`
-    font-size: 1.8rem;
+    width: 80%;
+    font-size: 1.2rem;
     color: rgb(247, 247, 247);
+    line-height: 1.5rem;
+
+    @media ${({ theme }) => theme.device.extraLarge} {
+        padding-top: 10px;
+        font-size: 1.8rem;
+        line-height: 0;
+    }
 `;
 
 export const ToggleBtn = styled.div`
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     border: 1px solid rgb(247, 247, 247);
-    border-radius: 25px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     background-color: rgba(127, 127, 127, .3);
@@ -97,5 +117,14 @@ export const ToggleBtn = styled.div`
         width: 100%;
         height: 80%;
         fill: rgb(247, 247, 247);
+    }
+
+    @media ${({ theme }) => theme.device.large} {
+    }
+
+    @media ${({ theme }) => theme.device.extraLarge} {
+        width: 25px;
+        height: 25px;
+        font-size: 2.5rem;
     }
 `;

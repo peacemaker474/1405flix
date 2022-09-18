@@ -21,7 +21,7 @@ interface IVideoProps {
 }
 
 const VideoWrapper = styled.div`
-    width: 95%;
+    width: 90%;
     height: 10vh;
     padding-top: 30px;
     border-top: 1px solid white;
@@ -31,24 +31,35 @@ const VideoWrapper = styled.div`
     div:last-child {
         padding-bottom: 100px;
     }
+
+    @media ${({ theme }) => theme.device.extraLarge} {
+        width: 95%;
+    }
 `;
 
 const VideoTitle = styled.h2`
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 20px;
+
+    @media ${({ theme }) => theme.device.extraLarge} {
+        font-size: 3rem;
+    }
 `;
 
 const NoneVideo = styled.h2`
     font-size: 2rem;
     text-align: center;
-    padding-top: 20px;
+    padding: 20px 0 80px 0;
+
+    @media ${({ theme }) => theme.device.extraLarge} {
+        font-size: 2.5rem;
+        padding: 20px 0 0 0;
+    }
 `;
 
 
 function DetailVideo({ videoData }: IVideoProps) {
-
-    console.log(videoData);
 
     return (
         <VideoWrapper>
@@ -56,6 +67,7 @@ function DetailVideo({ videoData }: IVideoProps) {
             {videoData.length === 0 ? <NoneVideo> 현재 존재하는 비디오가 없습니다.</NoneVideo> :
                 videoData.map((video) => (
                     <YouTube
+                        key={video.id}
                         style={{
                             marginBottom: 20,
                         }}

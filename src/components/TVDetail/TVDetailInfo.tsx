@@ -1,37 +1,16 @@
 import styled from "styled-components";
+import { ITVDetailInfo } from "../../network/api";
 import { makePath } from "../../utiles/makeImagePath";
 
-interface IGenres {
-    id: number;
-    name: string;
+interface ITVDetailProps {
+    infoData: ITVDetailInfo;
 }
 
-interface IDetail {
-    adult: boolean;
-    backdrop_path: string;
-    genres: IGenres[];
-    id: number;
-    imdb_id: string;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    runtime: number;
-    tagline: string;
-    title: string;
-    video: boolean;
-}
-
-interface IDetailProp {
-    infoData: IDetail;
-}
-
-function DetailInfo({ infoData }: IDetailProp) {
+function TVDetailInfo({ infoData }: ITVDetailProps) {
     return (
         <>
             <DetailCover bgPhoto={makePath(infoData.backdrop_path ? infoData.backdrop_path : infoData.poster_path, "w500")} />
-            <MovieTitle> {infoData.title} </MovieTitle>
+            <MovieTitle> {infoData.name} </MovieTitle>
             <MovieContent>
                 <MovieOverview> {infoData.overview} </MovieOverview>
                 <MovieETCInfo>
@@ -41,14 +20,13 @@ function DetailInfo({ infoData }: IDetailProp) {
                             <span key={genre.id}> {genre.name} </span>
                         ))}
                     </MovieGenresBox>
-                    <MovieRunningTime> 러닝타임: {infoData.runtime}분 </MovieRunningTime>
                 </MovieETCInfo>
             </MovieContent>
         </>
     );
 }
 
-export default DetailInfo;
+export default TVDetailInfo;
 
 const DetailCover = styled.div<{ bgPhoto: string }>`
     width: 100%;

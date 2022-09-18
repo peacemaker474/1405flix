@@ -12,5 +12,12 @@ declare module "styled-components" {
             darker: string;
             lighter: string;
         };
+        device: {
+            extraSmall: string;
+            small: string;
+            medium: string;
+            large: string;
+            extraLarge: string;
+        }
     }
 }

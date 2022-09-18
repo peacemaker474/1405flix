@@ -7,9 +7,11 @@ function AppRouter() {
     return (
         <Routes>
             <Route path="/" element={<HomePage />}>
-                <Route path="/movies/:movieId" element={<div />} />
+                <Route path="/movies/:movieId" />
             </Route>
-            <Route path="/tvShows" element={<TVShowPage />} />
+            <Route path="/tvShows" element={<TVShowPage />}>
+                <Route path="/tvShows/:tvId" />
+            </Route>
             <Route path="/search" element={<SearchPage />} />
         </Routes>
     );
