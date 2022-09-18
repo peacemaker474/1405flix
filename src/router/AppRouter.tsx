@@ -6,7 +6,9 @@ import TVShowPage from "../pages/TVShowPage";
 function AppRouter() {
     return (
         <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage />}>
+                <Route path="/movies/:movieId" element={<div />} />
+            </Route>
             <Route path="/tvShows" element={<TVShowPage />} />
             <Route path="/search" element={<SearchPage />} />
         </Routes>

@@ -12,11 +12,20 @@ const api = axios.create({
 });
 
 export interface IMovie {
+    adult: boolean;
     backdrop_path: string;
-    poster_path: string;
+    genre_ids: number[];
     id: number;
-    title: string;
+    original_language: string;
+    original_title: string;
     overview: string;
+    popularity: number;
+    poster_path: string;
+    release_date: string;
+    title: string;
+    video: boolean;
+    vote_average: number;
+    vote_count: number;
 }
 
 export interface INowPlaying {
@@ -32,6 +41,36 @@ export interface INowPlaying {
 
 export const getNowPlaying = async () => {
     const { data } = await api.get("/movie/now_playing");
+
+    return data;
+};
+
+export const getDetailMovie = async (movieId: string) => {
+    const { data } = await api.get(`/movie/${parseInt(movieId)}`);
+
+    return data;
+};
+
+export const getMovieVideos = async (movieId: string) => {
+    const { data } = await api.get(`/movie/${parseInt(movieId)}/videos`);
+
+    return data;
+};
+
+export const getPopularMovie = async () => {
+    const { data } = await api.get("/movie/popular");
+
+    return data;
+};
+
+export const getTopRatedMovie = async () => {
+    const { data } = await api.get("/movie/top_rated");
+
+    return data;
+}
+
+export const getUpcomingMovie = async () => {
+    const { data } = await api.get("/movie/upcoming");
 
     return data;
 }
