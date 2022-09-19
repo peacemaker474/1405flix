@@ -44,7 +44,7 @@ const MainHeader = styled(motion.header)`
     position: fixed;
     top: 0;
     z-index: 99;
-    color: rgb(247, 247, 247);
+    color: ${({ theme }) => theme.color.white};
 `;
 
 const MainNavBar = styled.nav`

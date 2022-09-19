@@ -1,29 +1,46 @@
 import styled from 'styled-components';
 import YouTube from 'react-youtube';
-
-
-interface IVideo {
-    id: string;
-    iso_639_1: string;
-    iso_3166_1: string;
-    key: string;
-    name: string;
-    official: boolean;
-    published_at: string;
-    site: string;
-    size: number;
-    type: string;
-}
+import { IVideo } from '../../network/api';
 
 interface IVideoProps {
     videoData: IVideo[];
 }
 
+
+function DetailVideo({ videoData }: IVideoProps) {
+
+    return (
+        <VideoWrapper>
+            <VideoTitle> 현재 게시된 예고편 </VideoTitle>
+            {videoData.length === 0 ? <NoneVideo> 현재 존재하는 비디오가 없습니다.</NoneVideo> :
+                <Videos>
+                    {videoData.map((video) => (
+                        <YouTube
+                            key={video.id}
+                            style={{
+                                marginBottom: 20,
+                            }}
+                            videoId={video.key}
+                            opts={{
+                                playerVars: {
+                                    modestbranding: 1,
+                                }
+                            }}
+                        />
+                    ))}
+                </Videos>
+            }
+        </VideoWrapper>
+    );
+}
+
+export default DetailVideo;
+
 const VideoWrapper = styled.div`
     width: 90%;
     height: 10vh;
     padding-top: 30px;
-    border-top: 1px solid white;
+    border-top: 1px solid ${({ theme }) => theme.color.white};;
     margin: 0px auto;
     margin-top: 30px;
 
@@ -86,33 +103,3 @@ const Videos = styled.div`
         }
     }
 `;
-
-
-function DetailVideo({ videoData }: IVideoProps) {
-
-    return (
-        <VideoWrapper>
-            <VideoTitle> 현재 게시된 예고편 </VideoTitle>
-            {videoData.length === 0 ? <NoneVideo> 현재 존재하는 비디오가 없습니다.</NoneVideo> :
-                <Videos>
-                    {videoData.map((video) => (
-                        <YouTube
-                            key={video.id}
-                            style={{
-                                marginBottom: 20,
-                            }}
-                            videoId={video.key}
-                            opts={{
-                                playerVars: {
-                                    modestbranding: 1,
-                                }
-                            }}
-                        />
-                    ))}
-                </Videos>
-            }
-        </VideoWrapper>
-    );
-}
-
-export default DetailVideo;

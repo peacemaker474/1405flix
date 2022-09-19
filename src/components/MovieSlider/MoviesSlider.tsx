@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IMovie } from '../../network/api';
 import { makePath } from '../../utiles/makeImagePath';
-import { boxVariants, imgVariants, infoVariants, nowVariants } from '../../styles/variants';
+import { boxVariants, imgVariants, infoVariants, sliderVariants } from '../../styles/variants';
 import { InfoBox, InfoTitle, LeftButton, RightButton, SliderList, SliderLists, SliderTitle, SliderWrapper, ToggleBtn } from '../../styles/Slider/wrapper';
 
 interface IMovieSliderProps {
@@ -46,7 +46,7 @@ function MoviesSlider({ movieData, handleMoveDetail, offset, kind, title }: IMov
             <AnimatePresence initial={false} onExitComplete={handleCheckLeaving} custom={isBack}>
                 <SliderLists
                     custom={isBack}
-                    variants={nowVariants}
+                    variants={sliderVariants}
                     key={index}
                     initial="hidden"
                     animate="visible"

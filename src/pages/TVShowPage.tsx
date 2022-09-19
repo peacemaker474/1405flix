@@ -9,6 +9,90 @@ import { useCallback } from "react";
 import TVDetail from "../components/TVDetail/TVDetail";
 import TVShowsSlider from "../components/TVSlider/TVShowsSlider";
 
+function TVShowPage() {
+    const tvShowsData = useQueries([
+        {
+            queryKey: ['TVShows', 'onAir'],
+            queryFn: () => getOnAirTVShow(),
+            staleTime: 1800 * 1000,
+        },
+        {
+            queryKey: ['TVShows', 'airing'],
+            queryFn: () => getAiringTVShow(),
+            staleTime: 1800 * 1000
+        },
+        {
+            queryKey: ["TVShows", "topRated"],
+            queryFn: () => getTopRatedTVShow(),
+            staleTime: 1800 * 1000,
+        },
+        {
+            queryKey: ['TVShows', 'popular'],
+            queryFn: () => getPopularTVShow(),
+            staleTime: 1800 * 1000,
+        }
+    ]);
+
+    const isLoading = tvShowsData?.some((tvShow) => tvShow.isLoading);
+
+    const navigate = useNavigate();
+    const offset = 6;
+    const detailTVMatch = useMatch("/tvShows/:tvId");
+
+    const handleMoveDetail = useCallback((tvId: string) => () => {
+        navigate(`/tvShows/${tvId}`);
+    }, [navigate]);
+
+    const handleBannerDetail = (tvId: string) => () => {
+        navigate(`/tvShows/${tvId}`);
+    }
+
+    if (isLoading) return <LoadingPage />
+
+    return (
+        <Wrapper>
+            <Banner bgPhoto={makePath(tvShowsData[0].data.results[0].backdrop_path || "")}>
+                <SliderTitle> 지금 방영중인 드라마 </SliderTitle>
+                <BannerTitle> {tvShowsData[0].data.results[0].name} </BannerTitle>
+                <BannerOverView> {tvShowsData[0].data.results[0].overview} </BannerOverView>
+                <BannerGoDetail onClick={handleBannerDetail(tvShowsData[0].data.results[0].id)}> 상세 정보 </BannerGoDetail>
+            </Banner>
+            <Sliders>
+                <TVShowsSlider
+                    tvsData={tvShowsData[0].data ? tvShowsData[0].data?.results.slice(1) : []}
+                    handleMoveDetail={handleMoveDetail}
+                    offset={offset}
+                    kind="ontheAir"
+                />
+                <TVShowsSlider
+                    tvsData={tvShowsData[1].data ? tvShowsData[1].data?.results : []}
+                    handleMoveDetail={handleMoveDetail}
+                    offset={offset}
+                    kind="airing"
+                    title="공개된 드라마"
+                />
+                <TVShowsSlider
+                    tvsData={tvShowsData[2].data ? tvShowsData[2].data?.results : []}
+                    handleMoveDetail={handleMoveDetail}
+                    offset={offset}
+                    kind="tvPopular"
+                    title="현재 인기중인 드라마"
+                />
+                <TVShowsSlider
+                    tvsData={tvShowsData[3].data ? tvShowsData[3].data?.results : []}
+                    handleMoveDetail={handleMoveDetail}
+                    offset={offset}
+                    kind="tvTopRated"
+                    title="현재까지 가장 인기있는 드라마"
+
+                />
+            </Sliders>
+            {detailTVMatch && <TVDetail detailLayout={detailTVMatch.params.tvId || ""} />}
+        </Wrapper>
+    );
+}
+
+export default TVShowPage;
 
 const Wrapper = styled.div`
     padding-bottom: 200px;
@@ -98,88 +182,3 @@ const Sliders = styled.main`
     flex-direction: column;
     gap: 350px;
 `;
-
-function TVShowPage() {
-    const tvShowsData = useQueries([
-        {
-            queryKey: ['TVShows', 'onAir'],
-            queryFn: () => getOnAirTVShow(),
-            staleTime: 1800 * 1000,
-        },
-        {
-            queryKey: ['TVShows', 'airing'],
-            queryFn: () => getAiringTVShow(),
-            staleTime: 1800 * 1000
-        },
-        {
-            queryKey: ["TVShows", "topRated"],
-            queryFn: () => getTopRatedTVShow(),
-            staleTime: 1800 * 1000,
-        },
-        {
-            queryKey: ['TVShows', 'popular'],
-            queryFn: () => getPopularTVShow(),
-            staleTime: 1800 * 1000,
-        }
-    ]);
-
-    const isLoading = tvShowsData?.some((tvShow) => tvShow.isLoading);
-
-    const navigate = useNavigate();
-    const offset = 6;
-    const detailTVMatch = useMatch("/tvShows/:tvId");
-
-    const handleMoveDetail = useCallback((tvId: string) => () => {
-        navigate(`/tvShows/${tvId}`);
-    }, [navigate]);
-
-    const handleBannerDetail = (tvId: string) => () => {
-        navigate(`/tvShows/${tvId}`);
-    }
-
-    if (isLoading) return <LoadingPage />
-
-    return (
-        <Wrapper>
-            <Banner bgPhoto={makePath(tvShowsData[0].data.results[0].backdrop_path || "")}>
-                <SliderTitle> 지금 방영중인 드라마 </SliderTitle>
-                <BannerTitle> {tvShowsData[0].data.results[0].name} </BannerTitle>
-                <BannerOverView> {tvShowsData[0].data.results[0].overview} </BannerOverView>
-                <BannerGoDetail onClick={handleBannerDetail(tvShowsData[0].data.results[0].id)}> 상세 정보 </BannerGoDetail>
-            </Banner>
-            <Sliders>
-                <TVShowsSlider
-                    tvsData={tvShowsData[0].data ? tvShowsData[0].data?.results.slice(1) : []}
-                    handleMoveDetail={handleMoveDetail}
-                    offset={offset}
-                    kind="ontheAir"
-                />
-                <TVShowsSlider
-                    tvsData={tvShowsData[1].data ? tvShowsData[1].data?.results : []}
-                    handleMoveDetail={handleMoveDetail}
-                    offset={offset}
-                    kind="airing"
-                    title="공개된 드라마"
-                />
-                <TVShowsSlider
-                    tvsData={tvShowsData[2].data ? tvShowsData[2].data?.results : []}
-                    handleMoveDetail={handleMoveDetail}
-                    offset={offset}
-                    kind="tvPopular"
-                    title="현재 인기중인 드라마"
-                />
-                <TVShowsSlider
-                    tvsData={tvShowsData[3].data ? tvShowsData[3].data?.results : []}
-                    handleMoveDetail={handleMoveDetail}
-                    offset={offset}
-                    kind="tvTopRated"
-                    title="현재까지 가장 인기있는 드라마"
-
-                />
-            </Sliders>
-            {detailTVMatch && <TVDetail detailLayout={detailTVMatch.params.tvId || ""} />}
-        </Wrapper>
-    );
-}
-
-export default TVShowPage;

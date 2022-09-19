@@ -1,4 +1,4 @@
-export const nowVariants = {
+export const sliderVariants = {
     hidden: (isBack: boolean) => ({
         x: isBack ? -window.outerWidth : window.outerWidth,
     }),
@@ -33,7 +33,6 @@ export const imgVariants = {
     },
     hover: {
         height: 200,
-        borderRadius: "5px 5px 0 0",
         transition: {
             delay: 0.7,
             duration: 0.3,
@@ -44,10 +43,38 @@ export const imgVariants = {
 export const infoVariants = {
     hover: {
         display: "flex",
-        borderRadius: "0 0 5px 5px",
         transition: {
             delay: 0.7,
             duration: 0.3,
         }
     }
 };
+
+export const listVariants = {
+    normal: {
+        scale: 1,
+    },
+    hover: {
+        scale: 1.3,
+        y: -75,
+        boxShadow: "rgba(247, 247, 247, 0.1) 0px 1px 4px, rgb(247, 247, 247) 0px 0px 0px 0px",
+        transition: {
+            delay: 0.7,
+            duration: 0.3,
+            type: "tween",
+        }
+    }
+}
+
+export const searchImgVariants = {
+    normal: {
+        height: 250,
+    },
+    hover: {
+        height: 175,
+        transition: {
+            delay: 0.7,
+            duration: 0.3,
+        }
+    }
+}

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ITVShow } from '../../network/api';
 import { makePath } from '../../utiles/makeImagePath';
-import { boxVariants, imgVariants, infoVariants, nowVariants } from '../../styles/variants';
+import { boxVariants, imgVariants, infoVariants, sliderVariants } from '../../styles/variants';
 import { InfoBox, InfoTitle, LeftButton, RightButton, SliderList, SliderLists, SliderTitle, SliderWrapper, ToggleBtn } from '../../styles/Slider/wrapper';
 
 interface ITVShowsProps {
@@ -46,7 +46,7 @@ function TVShowsSlider({ tvsData, handleMoveDetail, offset, kind, title }: ITVSh
             <AnimatePresence initial={false} onExitComplete={handleCheckLeaving} custom={isBack}>
                 <SliderLists
                     custom={isBack}
-                    variants={nowVariants}
+                    variants={sliderVariants}
                     key={index}
                     initial="hidden"
                     animate="visible"

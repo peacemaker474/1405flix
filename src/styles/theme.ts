@@ -1,15 +1,10 @@
 import { DefaultTheme } from "styled-components";
 
 export const theme: DefaultTheme = {
-    red: "#E51013",
-    black: {
-        veryDark: "#141414",
-        darker: "#181818",
-        lighter: "#2F2F2F",
-    },
-    white: {
-        lighter: "#fff",
-        darker: "#e5e5e5",
+    color: {
+        white: "rgb(247, 247, 247)",
+        black: "rgb(17, 18, 29)",
+        lightGray: "rgba(127, 127, 127, .3)",
     },
     device: {
         extraSmall: `only screen and (max-width: 600px)`,

@@ -48,7 +48,7 @@ const MainList = styled.li<{ current: boolean }>`
 `;
 
 const MainLink = styled(Link)`
-    color: rgba(247, 247, 247, 1);
+    color: ${({ theme }) => theme.color.white};
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -61,7 +61,7 @@ const MainLink = styled(Link)`
         svg {
             width: 20px;
             height: 20px;
-            fill: rgba(247, 247, 247, 1);
+            fill: ${({ theme }) => theme.color.white};
         }
     }
 `;
@@ -73,13 +73,13 @@ const LinkText = styled.p`
 
     &::before {
         content: '';
-        position: absolute; /*부모 요소에는 position: relative를 주어야 함*/
-        background-color: rgb(247, 247, 247);
+        position: absolute;
+        background-color: ${({ theme }) => theme.color.white};
         height: 2px;
 
-        width: 0; /*초기에 보이지 않도록*/
-        bottom: -50%; /*a태그 아래에 위치*/
-        transition: 0.7s; /*애니메이션 동작 실행 시간 정의*/
+        width: 0;
+        bottom: -50%;
+        transition: 0.7s;
         right: 0px;
     }
 

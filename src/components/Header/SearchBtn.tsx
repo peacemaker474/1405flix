@@ -9,7 +9,7 @@ interface IForm {
 }
 
 function SearchBtn() {
-    const { register, handleSubmit } = useForm<IForm>();
+    const { register, handleSubmit, setValue } = useForm<IForm>();
     const [toggleSearch, setToggleSearch] = useState(false);
     const navigate = useNavigate();
     const inputAnimation = useAnimation();
@@ -26,8 +26,8 @@ function SearchBtn() {
     };
 
     const handleSearchKeyword = (data: IForm) => {
-        console.log(data);
         navigate(`/search?keyword=${data.keyward}`);
+        setValue("keyward", "");
     }
 
     return (

@@ -37,7 +37,7 @@ export const LeftButton = styled.button`
     }
     
     svg {
-        fill: rgb(247, 247, 247);
+        fill: ${({ theme }) => theme.color.white};
         width: 100%;
         height: 20%;
     }
@@ -64,7 +64,7 @@ export const SliderList = styled(motion.div)`
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    background-color: rgb(17, 18, 29);
+    background-color: ${({ theme }) => theme.color.black};
     cursor: pointer;
     
     &:first-child {
@@ -84,7 +84,7 @@ export const SliderList = styled(motion.div)`
 export const InfoBox = styled(motion.div)`
     width: 90%;
     height: 100px;
-    background-color: rgb(17, 18, 29);
+    background-color: ${({ theme }) => theme.color.black};
     display: none;
     margin: 0 auto;
     justify-content: space-between;
@@ -94,7 +94,7 @@ export const InfoBox = styled(motion.div)`
 export const InfoTitle = styled.h4`
     width: 80%;
     font-size: 1.2rem;
-    color: rgb(247, 247, 247);
+    color: ${({ theme }) => theme.color.white};
     line-height: 1.5rem;
 
     @media ${({ theme }) => theme.device.extraLarge} {
@@ -107,11 +107,11 @@ export const InfoTitle = styled.h4`
 export const ToggleBtn = styled.div`
     width: 20px;
     height: 20px;
-    border: 1px solid rgb(247, 247, 247);
+    border: 1px solid ${({ theme }) => theme.color.white};
     border-radius: 50%;
     display: flex;
     align-items: center;
-    background-color: rgba(127, 127, 127, .3);
+    background-color: ${({ theme }) => theme.color.lightGray};
 
     &:hover {
         border-width: 2px;
@@ -120,7 +120,7 @@ export const ToggleBtn = styled.div`
     svg {
         width: 100%;
         height: 80%;
-        fill: rgb(247, 247, 247);
+        fill: ${({ theme }) => theme.color.white};
     }
 
     @media ${({ theme }) => theme.device.large} {

@@ -115,7 +115,7 @@ const TVRelateLogos = styled.div`
     padding: 3px;
     align-items: center;
     width: max-content;
-    background-color: rgba(247, 247, 247, 1);
+    background-color: ${({ theme }) => theme.color.white};;
     border-radius: 5px;
 `;
 

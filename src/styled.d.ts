@@ -2,16 +2,11 @@ import "styled-components";
 
 declare module "styled-components" {
     export interface DefaultTheme {
-        red: string;
-        black: {
-            veryDark: string;
-            darker: string;
-            lighter: string;
-        };
-        white: {
-            darker: string;
-            lighter: string;
-        };
+        color: {
+            white: string;
+            black: string;
+            lightGray: string;
+        }
         device: {
             extraSmall: string;
             small: string;

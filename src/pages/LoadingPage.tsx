@@ -9,7 +9,7 @@ const LoadingWrapper = styled.div`
 
 const LoadingTitle = styled.h2`
     font-size: 3rem;
-    color: rgb(247, 247, 247);
+    color: ${({ theme }) => theme.color.white};
 `;
 
 function LoadingPage() {
