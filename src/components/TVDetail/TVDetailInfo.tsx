@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ITVDetailInfo } from "../../network/api";
+import { ITVDetailInfo } from "../../type";
 import { makePath } from "../../utiles/makeImagePath";
 
 interface ITVDetailProps {

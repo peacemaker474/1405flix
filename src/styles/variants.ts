@@ -1,12 +1,12 @@
 export const sliderVariants = {
-    hidden: (isBack: boolean) => ({
-        x: isBack ? -window.outerWidth : window.outerWidth,
+    hidden: (direction: number) => ({
+        x: direction > 0 ? window.outerWidth : -window.outerWidth,
     }),
     visible: {
         x: 0,
     },
-    exit: (isBack: boolean) => ({
-        x: isBack ? window.outerWidth : -window.outerWidth,
+    exit: (direction: number) => ({
+        x: direction > 0 ? -window.outerWidth : window.outerWidth,
     })
 };
 

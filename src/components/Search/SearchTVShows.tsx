@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ITVShow } from '../../network/api';
+import { ITVShow } from '../../type';
 import { NoneTitle, SearchContainer, SearchInfoBox, SearchKeyword, SearchList, SearchLists, SearchSubTitle, SearchTitle } from "../../styles/Search/wrapper";
 import { ToggleBtn } from "../../styles/Slider/wrapper";
 import { searchImgVariants, infoVariants, listVariants } from '../../styles/variants';

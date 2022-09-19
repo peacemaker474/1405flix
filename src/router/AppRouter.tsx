@@ -9,7 +9,6 @@ function AppRouter() {
             {["/", "/movies/:movieId"]?.map((path) => (
                 <Route key={path} path={path} element={<HomePage />} />
             ))}
-
             {["/tvShows", "/tvShows/:tvId"]?.map((path) => (
                 <Route key={path} path={path} element={<TVShowPage />} />
             ))}

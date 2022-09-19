@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { IMovie } from "../../network/api";
+import { IMovie } from "../../type";
 import { NoneTitle, SearchContainer, SearchInfoBox, SearchKeyword, SearchList, SearchLists, SearchSubTitle, SearchTitle } from "../../styles/Search/wrapper";
 import { ToggleBtn } from "../../styles/Slider/wrapper";
 import { infoVariants, listVariants, searchImgVariants } from "../../styles/variants";

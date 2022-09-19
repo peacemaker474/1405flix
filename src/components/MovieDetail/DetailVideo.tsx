@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import YouTube from 'react-youtube';
-import { IVideo } from '../../network/api';
+import { IVideo } from '../../type';
 
 interface IVideoProps {
     videoData: IVideo[];
