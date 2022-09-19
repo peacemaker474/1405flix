@@ -12,7 +12,10 @@ function AppRouter() {
             <Route path="/tvShows" element={<TVShowPage />}>
                 <Route path="/tvShows/:tvId" />
             </Route>
-            <Route path="/search" element={<SearchPage />} />
+            <Route path="/search" element={<SearchPage />}>
+                <Route path="/search/movie/:movieId" />
+                <Route path="/search/tvShows/:movieId" />
+            </Route>
         </Routes>
     );
 }

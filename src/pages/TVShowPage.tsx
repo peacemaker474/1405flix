@@ -7,6 +7,7 @@ import { SliderTitle } from "../styles/Slider/wrapper";
 import { useMatch, useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 import TVDetail from "../components/TVDetail/TVDetail";
+import TVShowsSlider from "../components/TVSlider/TVShowsSlider";
 
 
 const Wrapper = styled.div`
@@ -147,6 +148,34 @@ function TVShowPage() {
                 <BannerGoDetail onClick={handleBannerDetail(tvShowsData[0].data.results[0].id)}> 상세 정보 </BannerGoDetail>
             </Banner>
             <Sliders>
+                <TVShowsSlider
+                    tvsData={tvShowsData[0].data ? tvShowsData[0].data?.results.slice(1) : []}
+                    handleMoveDetail={handleMoveDetail}
+                    offset={offset}
+                    kind="ontheAir"
+                />
+                <TVShowsSlider
+                    tvsData={tvShowsData[1].data ? tvShowsData[1].data?.results : []}
+                    handleMoveDetail={handleMoveDetail}
+                    offset={offset}
+                    kind="airing"
+                    title="공개된 드라마"
+                />
+                <TVShowsSlider
+                    tvsData={tvShowsData[2].data ? tvShowsData[2].data?.results : []}
+                    handleMoveDetail={handleMoveDetail}
+                    offset={offset}
+                    kind="tvPopular"
+                    title="현재 인기중인 드라마"
+                />
+                <TVShowsSlider
+                    tvsData={tvShowsData[3].data ? tvShowsData[3].data?.results : []}
+                    handleMoveDetail={handleMoveDetail}
+                    offset={offset}
+                    kind="tvTopRated"
+                    title="현재까지 가장 인기있는 드라마"
+
+                />
             </Sliders>
             {detailTVMatch && <TVDetail detailLayout={detailTVMatch.params.tvId || ""} />}
         </Wrapper>

@@ -7,6 +7,7 @@ import { getDetailTVs, getTVsVideo } from '../../network/api';
 import LoadingPage from '../../pages/LoadingPage';
 import { CancelBtn } from '../../styles/Common/Button';
 import TVDetailInfo from './TVDetailInfo';
+import TVDetailVideo from './TVDetailVideo';
 
 const TVsDetailWrapper = styled(motion.div)`
     width: 60vw;
@@ -63,7 +64,7 @@ function TVDetail({ detailLayout }: IDetailProps) {
 
     const navigate = useNavigate();
     const handleHomeClick = useCallback(() => {
-        navigate("/tvShows");
+        navigate(-1);
     }, [navigate]);
 
     return (
@@ -75,6 +76,7 @@ function TVDetail({ detailLayout }: IDetailProps) {
                         tvDetailData &&
                         <>
                             <TVDetailInfo infoData={tvDetailData[0].data!} />
+                            <TVDetailVideo videoData={tvDetailData[1].data.results!} />
                         </>
                 }
             </TVsDetailWrapper>

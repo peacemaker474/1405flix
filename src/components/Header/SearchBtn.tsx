@@ -1,9 +1,17 @@
 import { useState } from "react";
 import { motion, useAnimation } from 'framer-motion';
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
+interface IForm {
+    keyward: string;
+}
 
 function SearchBtn() {
+    const { register, handleSubmit } = useForm<IForm>();
     const [toggleSearch, setToggleSearch] = useState(false);
+    const navigate = useNavigate();
     const inputAnimation = useAnimation();
 
     const handleToggle = () => {
@@ -15,10 +23,15 @@ function SearchBtn() {
             inputAnimation.start({ scaleX: 1 });
         }
         setToggleSearch((prev) => !prev);
+    };
+
+    const handleSearchKeyword = (data: IForm) => {
+        console.log(data);
+        navigate(`/search?keyword=${data.keyward}`);
     }
 
     return (
-        <SearchBox>
+        <SearchBox onSubmit={handleSubmit(handleSearchKeyword)}>
             <motion.svg
                 animate={{
                     x: toggleSearch ? -265 : 0,
@@ -39,7 +52,14 @@ function SearchBtn() {
                 initial={{ scaleX: 0 }}
                 animate={inputAnimation}
                 transition={{ type: "linear" }}
-                type="text" placeholder="TV, Movies를 검색하세요."
+                type="text"
+                placeholder="TV, Movies를 검색하세요."
+                {
+                ...register("keyward", {
+                    required: true,
+                    minLength: 1,
+                })
+                }
             />
         </SearchBox>
     );
@@ -47,7 +67,7 @@ function SearchBtn() {
 
 export default SearchBtn;
 
-const SearchBox = styled.div`
+const SearchBox = styled.form`
     width: 15%;
     height: 100%;
     display: flex;
@@ -57,6 +77,7 @@ const SearchBox = styled.div`
     position: relative;
 
     svg {
+        cursor: pointer;
         height: 25px;
         z-index: 3;
     }

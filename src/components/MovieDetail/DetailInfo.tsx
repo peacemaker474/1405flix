@@ -41,7 +41,7 @@ function DetailInfo({ infoData }: IDetailProp) {
                             <span key={genre.id}> {genre.name} </span>
                         ))}
                     </MovieGenresBox>
-                    <MovieRunningTime> 러닝타임: {infoData.runtime}분 </MovieRunningTime>
+                    <MovieRunningTime> 러닝타임: {infoData.runtime !== 0 ? infoData.runtime + "분" : "-"} </MovieRunningTime>
                 </MovieETCInfo>
             </MovieContent>
         </>

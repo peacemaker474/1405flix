@@ -13,9 +13,13 @@ export const SliderWrapper = styled.div`
 `;
 
 export const SliderTitle = styled.h1`
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
     padding: 0 0 50px 70px;
+
+    @media ${({ theme }) => theme.device.extraLarge} {
+        font-size: 3rem;
+    }
 `;
 
 export const LeftButton = styled.button`

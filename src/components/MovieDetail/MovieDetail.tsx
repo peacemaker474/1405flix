@@ -64,7 +64,7 @@ function MovieDetail({ detailLayout }: IDetailProps) {
 
     const navigate = useNavigate();
     const handleHomeClick = useCallback(() => {
-        navigate("/")
+        navigate(-1)
     }, [navigate]);
 
     return (

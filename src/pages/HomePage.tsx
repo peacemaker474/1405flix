@@ -3,10 +3,7 @@ import { useQueries } from 'react-query';
 import { useMatch, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import MovieDetail from '../components/MovieDetail/MovieDetail';
-import NowSlider from '../components/MovieSlider/NowSlider';
-import PopularSlider from '../components/MovieSlider/PopularSlider';
-import TopRatedSlider from '../components/MovieSlider/TopRatedSlider';
-import UpcomingSlider from '../components/MovieSlider/UpcomingSlider';
+import MoviesSlider from '../components/MovieSlider/MoviesSlider';
 import { getNowPlaying, getPopularMovie, getTopRatedMovie, getUpcomingMovie } from '../network/api';
 import { SliderTitle } from '../styles/Slider/wrapper';
 import { makePath } from '../utiles/makeImagePath';
@@ -150,25 +147,32 @@ function HomePage() {
                 <BannerGoDetail onClick={handleBannerDetail(movieData[0].data.results[0].id)}> 상세 정보 </BannerGoDetail>
             </Banner>
             <Sliders>
-                <NowSlider
+                <MoviesSlider
                     movieData={movieData[0].data ? movieData[0].data?.results.slice(1) : []}
                     handleMoveDetail={handleMoveDetail}
                     offset={offset}
+                    kind="now"
                 />
-                <PopularSlider
+                <MoviesSlider
                     movieData={movieData[1].data ? movieData[1].data?.results : []}
                     handleMoveDetail={handleMoveDetail}
                     offset={offset}
+                    kind="moviePopular"
+                    title="현재 인기가 많은 영화"
                 />
-                <UpcomingSlider
-                    movieData={movieData[3].data ? movieData[3].data?.results : []}
-                    handleMoveDetail={handleMoveDetail}
-                    offset={offset}
-                />
-                <TopRatedSlider
+                <MoviesSlider
                     movieData={movieData[2].data ? movieData[2].data?.results : []}
                     handleMoveDetail={handleMoveDetail}
                     offset={offset}
+                    kind="topRated"
+                    title="현재까지 가장 인기많은 영화"
+                />
+                <MoviesSlider
+                    movieData={movieData[3].data ? movieData[3].data?.results : []}
+                    handleMoveDetail={handleMoveDetail}
+                    offset={offset}
+                    kind="upcoming"
+                    title="곧 개봉할 영화"
                 />
             </Sliders>
             {detailMatch && <MovieDetail detailLayout={detailMatch.params.movieId || ""} />}

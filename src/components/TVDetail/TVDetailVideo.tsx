@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import YouTube from 'react-youtube';
 
-
 interface IVideo {
     id: string;
     iso_639_1: string;
@@ -88,7 +87,7 @@ const Videos = styled.div`
 `;
 
 
-function DetailVideo({ videoData }: IVideoProps) {
+function TVDetailVideo({ videoData }: IVideoProps) {
 
     return (
         <VideoWrapper>
@@ -98,9 +97,6 @@ function DetailVideo({ videoData }: IVideoProps) {
                     {videoData.map((video) => (
                         <YouTube
                             key={video.id}
-                            style={{
-                                marginBottom: 20,
-                            }}
                             videoId={video.key}
                             opts={{
                                 playerVars: {
@@ -115,4 +111,4 @@ function DetailVideo({ videoData }: IVideoProps) {
     );
 }
 
-export default DetailVideo;
+export default TVDetailVideo;

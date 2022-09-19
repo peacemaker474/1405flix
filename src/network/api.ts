@@ -91,6 +91,24 @@ export const getTVsVideo = async (tvId: string) => {
     return data;
 };
 
+// 검색 결과 받아오기
+
+export const getSearchMovie = async (query: string) => {
+    if (query) {
+        const { data } = await api.get(`/search/movie?query=${query}`);
+
+        return data;
+    }
+}
+
+export const getSearchTV = async (query: string) => {
+    if (query) {
+        const { data } = await api.get(`/search/tv?query=${query}`);
+
+        return data;
+    }
+}
+
 // 타입 선언, 추후 이동 및 안 쓰는 거 삭제
 
 export interface IMovie {
