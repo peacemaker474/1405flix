@@ -1,0 +1,7 @@
+{
+  "short_name": "1405flix",
+  "name": "1405flix",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff"
+}

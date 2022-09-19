@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/1405flix/static/js/main.9e15a96b.js",
+    "static/js/787.639e702a.chunk.js": "/1405flix/static/js/787.639e702a.chunk.js",
+    "static/media/backgroundImage.png": "/1405flix/static/media/backgroundImage.a0c4bdd961442f1bc8b1.png",
+    "index.html": "/1405flix/index.html",
+    "main.9e15a96b.js.map": "/1405flix/static/js/main.9e15a96b.js.map",
+    "787.639e702a.chunk.js.map": "/1405flix/static/js/787.639e702a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.9e15a96b.js"
+  ]
+}
