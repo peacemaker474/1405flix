@@ -31,9 +31,11 @@ export const LeftButton = styled.button`
     top: 0;
     z-index: 5;
     cursor: pointer;
+    opacity: 0;
 
     &:hover {
         background-color: rgba(7, 7, 7, .7);
+        opacity: 1;
     }
     
     svg {
