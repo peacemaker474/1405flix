@@ -39,13 +39,9 @@ function HomePage() {
     const offset = 6;
     const detailMatch = useMatch("/movies/:movieId");
 
-    const handleMoveDetail = useCallback((movieId: string) => () => {
+    const handleMoveDetail = useCallback((movieId: string) => {
         navigate(`/movies/${movieId}`);
     }, [navigate]);
-
-    const handleBannerDetail = (movieId: string) => () => {
-        navigate(`/movies/${movieId}`);
-    }
 
     if (isLoading) return <LoadingPage />
 
@@ -55,7 +51,7 @@ function HomePage() {
                 <SliderTitle> 지금 재생중인 영화 </SliderTitle>
                 <BannerTitle> {movieData[0].data.results[0].title} </BannerTitle>
                 <BannerOverView> {movieData[0].data.results[0].overview} </BannerOverView>
-                <BannerGoDetail onClick={handleBannerDetail(movieData[0].data.results[0].id)}> 상세 정보 </BannerGoDetail>
+                <BannerGoDetail onClick={() => handleMoveDetail(movieData[0].data.results[0].id)}> 상세 정보 </BannerGoDetail>
             </Banner>
             <Sliders>
                 <MoviesSlider
@@ -108,23 +104,28 @@ const Banner = styled.div<{ bgPhoto: string }>`
 
     h1 {
         position: absolute;
-        top: 15%;
+        top: 25%;
         left: 5%;
-        font-size: 5rem;
+        font-size: 3rem;
         font-weight: bold;
 
+        @media ${({ theme }) => theme.device.medium} {
+            top: 15%;
+            font-size: 3.5rem;
+        }
+
         @media ${({ theme }) => theme.device.large} {
-            font-size: 5rem;
+            font-size: 4rem;
         }
 
         @media ${({ theme }) => theme.device.extraLarge} {
-            font-size: 7rem;
+            font-size: 5rem;
         }
     }
 `;
 
 const BannerTitle = styled.h2`
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin-bottom: 20px;
 
     @media ${({ theme }) => theme.device.large} {
@@ -141,6 +142,19 @@ const BannerOverView = styled.p`
     font-size: 1.8rem;
     padding-left: 5px;
     line-height: 4rem;
+
+    @media ${({ theme }) => theme.device.extraSmall} {
+        font-size: 1.2rem;
+        line-height: 3rem;
+    }
+
+    @media ${({ theme }) => theme.device.small} {
+        font-size: 1.3rem;
+    }
+
+    @media ${({ theme }) => theme.device.medium} {
+        font-size: 1.5rem;
+    }
 
     @media ${({ theme }) => theme.device.large} {
         font-size: 1.8rem;

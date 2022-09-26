@@ -49,6 +49,7 @@ const MainHeader = styled(motion.header)`
 
 const MainNavBar = styled.nav`
     display: flex;
+    justify-content: flex-start;
     align-items: center;
     font-size: 1.5rem;
     height: 100%;

@@ -39,13 +39,10 @@ function TVShowPage() {
     const offset = 6;
     const detailTVMatch = useMatch("/tvShows/:tvId");
 
-    const handleMoveDetail = useCallback((tvId: string) => () => {
+    const handleMoveDetail = useCallback((tvId: string) => {
         navigate(`/tvShows/${tvId}`);
     }, [navigate]);
 
-    const handleBannerDetail = (tvId: string) => () => {
-        navigate(`/tvShows/${tvId}`);
-    }
 
     if (isLoading) return <LoadingPage />
 
@@ -55,7 +52,7 @@ function TVShowPage() {
                 <SliderTitle> 지금 방영중인 드라마 </SliderTitle>
                 <BannerTitle> {tvShowsData[0].data.results[0].name} </BannerTitle>
                 <BannerOverView> {tvShowsData[0].data.results[0].overview} </BannerOverView>
-                <BannerGoDetail onClick={handleBannerDetail(tvShowsData[0].data.results[0].id)}> 상세 정보 </BannerGoDetail>
+                <BannerGoDetail onClick={() => handleMoveDetail(tvShowsData[0].data.results[0].id)}> 상세 정보 </BannerGoDetail>
             </Banner>
             <Sliders>
                 <TVShowsSlider

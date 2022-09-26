@@ -33,9 +33,6 @@ function SearchBtn() {
     return (
         <SearchBox onSubmit={handleSubmit(handleSearchKeyword)}>
             <motion.svg
-                animate={{
-                    x: toggleSearch ? -265 : 0,
-                }}
                 onClick={handleToggle}
                 transition={{ type: "linear" }}
                 fill="currentColor"
@@ -68,10 +65,8 @@ function SearchBtn() {
 export default SearchBtn;
 
 const SearchBox = styled.form`
-    width: 15%;
     height: 100%;
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     padding-right: 50px;
     position: relative;
@@ -84,9 +79,9 @@ const SearchBox = styled.form`
 `;
 
 const SearchInput = styled(motion.input)`
-    transform-origin: right center;
+    transform-origin: left center;
     position: absolute;
-    right: 100px;
+    left: -5px;
     padding: 8px 15px;
     padding-left: 40px;
     z-index: 1;

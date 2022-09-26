@@ -34,7 +34,7 @@ function NavLists() {
 export default NavLists;
 
 const MainLists = styled.ul`
-    width: 85%;
+    width: max-content;
     height: 100%;
     display: flex;
     align-items: center;
