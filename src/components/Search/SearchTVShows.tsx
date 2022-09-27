@@ -23,7 +23,7 @@ function SearchTVShows({ keyword, searchTVData, handleTVDetail }: ISearchTVProps
                 {searchTVData && searchTVData?.length === 0 ? <NoneTitle> 검색하신 결과가 존재하지 않습니다. </NoneTitle> :
                     searchTVData?.map((list) => (
                         <SearchList key={list.id} variants={listVariants} initial="normal" whileHover="hover" transition={{ type: "tween" }}>
-                            <motion.img variants={searchImgVariants} src={makePath(list.backdrop_path ? list.backdrop_path : list.poster_path, "w500")} />
+                            <motion.img variants={searchImgVariants} src={makePath(list.backdrop_path || list.poster_path, "w500")} />
                             <SearchInfoBox variants={infoVariants}>
                                 <h3> {list.name} </h3>
                                 <ToggleBtn onClick={handleTVDetail(list.id + "")}>

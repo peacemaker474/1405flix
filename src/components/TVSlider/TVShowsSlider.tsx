@@ -68,7 +68,7 @@ function TVShowsSlider({ tvsData, handleMoveDetail, offset, kind, title }: ITVSh
                                     type: "tween"
                                 }}
                             >
-                                <motion.img variants={imgVariants} src={makePath(show.backdrop_path ? show.backdrop_path : show.poster_path, "w500")} />
+                                <motion.img variants={imgVariants} src={makePath(show.backdrop_path || show.poster_path, "w500")} />
                                 <InfoBox variants={infoVariants}>
                                     <InfoTitle>  {show.name}  </InfoTitle>
                                     <ToggleBtn onClick={() => handleMoveDetail(show.id + kind)}>

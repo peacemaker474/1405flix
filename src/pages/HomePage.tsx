@@ -55,27 +55,27 @@ function HomePage() {
             </Banner>
             <Sliders>
                 <MoviesSlider
-                    movieData={movieData[0].data ? movieData[0].data?.results.slice(1) : []}
+                    movieData={movieData[0].data?.results.slice(1) || []}
                     handleMoveDetail={handleMoveDetail}
                     offset={offset}
                     kind="now"
                 />
                 <MoviesSlider
-                    movieData={movieData[1].data ? movieData[1].data?.results : []}
+                    movieData={movieData[1].data?.results || []}
                     handleMoveDetail={handleMoveDetail}
                     offset={offset}
                     kind="moviePopular"
                     title="현재 인기가 많은 영화"
                 />
                 <MoviesSlider
-                    movieData={movieData[2].data ? movieData[2].data?.results : []}
+                    movieData={movieData[2].data?.results || []}
                     handleMoveDetail={handleMoveDetail}
                     offset={offset}
                     kind="topRated"
                     title="현재까지 가장 인기많은 영화"
                 />
                 <MoviesSlider
-                    movieData={movieData[3].data ? movieData[3].data?.results : []}
+                    movieData={movieData[3].data?.results || []}
                     handleMoveDetail={handleMoveDetail}
                     offset={offset}
                     kind="upcoming"

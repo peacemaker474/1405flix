@@ -68,7 +68,7 @@ function MoviesSlider({ movieData, handleMoveDetail, offset, kind, title }: IMov
                                     type: "tween"
                                 }}
                             >
-                                <motion.img variants={imgVariants} src={makePath(movie.backdrop_path ? movie.backdrop_path : movie.poster_path, "w500")} />
+                                <motion.img variants={imgVariants} src={makePath(movie.backdrop_path || movie.poster_path, "w500")} />
                                 <InfoBox variants={infoVariants}>
                                     <InfoTitle>  {movie.title}  </InfoTitle>
                                     <ToggleBtn onClick={() => handleMoveDetail(movie.id + kind)}>

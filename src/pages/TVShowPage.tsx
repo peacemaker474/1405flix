@@ -56,27 +56,27 @@ function TVShowPage() {
             </Banner>
             <Sliders>
                 <TVShowsSlider
-                    tvsData={tvShowsData[0].data ? tvShowsData[0].data?.results.slice(1) : []}
+                    tvsData={tvShowsData[0].data?.results.slice(1) || []}
                     handleMoveDetail={handleMoveDetail}
                     offset={offset}
                     kind="ontheAir"
                 />
                 <TVShowsSlider
-                    tvsData={tvShowsData[1].data ? tvShowsData[1].data?.results : []}
+                    tvsData={tvShowsData[1].data?.results || []}
                     handleMoveDetail={handleMoveDetail}
                     offset={offset}
                     kind="airing"
                     title="공개된 드라마"
                 />
                 <TVShowsSlider
-                    tvsData={tvShowsData[2].data ? tvShowsData[2].data?.results : []}
+                    tvsData={tvShowsData[2].data?.results || []}
                     handleMoveDetail={handleMoveDetail}
                     offset={offset}
                     kind="tvPopular"
                     title="현재 인기중인 드라마"
                 />
                 <TVShowsSlider
-                    tvsData={tvShowsData[3].data ? tvShowsData[3].data?.results : []}
+                    tvsData={tvShowsData[3].data?.results || []}
                     handleMoveDetail={handleMoveDetail}
                     offset={offset}
                     kind="tvTopRated"

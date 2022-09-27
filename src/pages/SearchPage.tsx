@@ -8,7 +8,7 @@ import MovieDetail from "../components/MovieDetail/MovieDetail";
 import TVDetail from "../components/TVDetail/TVDetail";
 import SearchMovie from "../components/Search/SearchMovie";
 import SearchTVShows from "../components/Search/SearchTVShows";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 
 const SearchWrapper = styled.div`
     width: 100%;
@@ -27,11 +27,15 @@ function SearchPage() {
     const searchData = useQueries([
         {
             queryKey: ['search', 'movies'],
-            queryFn: () => getSearchMovie(keyword ? keyword : ""),
+            queryFn: () => getSearchMovie(keyword || ""),
+            refetchOnWindowFocus: false,
+            cacheTime: 0,
         },
         {
             queryKey: ['search', 'TVShow'],
-            queryFn: () => getSearchTV(keyword ? keyword : ""),
+            queryFn: () => getSearchTV(keyword || ""),
+            refetchOnWindowFocus: false,
+            cacheTime: 0,
         }
     ]);
 
@@ -45,20 +49,25 @@ function SearchPage() {
         navigate(`/search/tvShows/${tvId}`)
     }, [navigate]);
 
+    useEffect(() => {
+        searchData[0].refetch();
+        searchData[1].refetch();
+    }, [keyword])
+
     if (isLoading) return <LoadingPage />
 
 
     return (
         <SearchWrapper>
             <SearchMovie
-                searchMovieData={searchData[0] ? searchData[0].data?.results : []}
+                searchMovieData={searchData[0].data?.results || []}
                 handleMovieDetail={handleMovieDetail}
-                keyword={keyword!}
+                keyword={keyword || ""}
             />
             <SearchTVShows
-                searchTVData={searchData[1] ? searchData[1].data?.results : []}
+                searchTVData={searchData[1].data?.results || []}
                 handleTVDetail={handleTVDetail}
-                keyword={keyword!}
+                keyword={keyword || ""}
             />
             {movieMatch && <MovieDetail detailLayout={movieMatch.params.movieId || ""} />}
             {tvShowMatch && <TVDetail detailLayout={tvShowMatch.params.tvId || ""} />}

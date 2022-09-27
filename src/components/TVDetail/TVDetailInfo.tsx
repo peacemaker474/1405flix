@@ -9,7 +9,7 @@ interface ITVDetailProps {
 function TVDetailInfo({ infoData }: ITVDetailProps) {
     return (
         <>
-            <DetailCover bgPhoto={makePath(infoData.backdrop_path ? infoData.backdrop_path : infoData.poster_path, "w500")} />
+            <DetailCover bgPhoto={makePath(infoData.backdrop_path || infoData.poster_path, "w500")} />
             <TVTitle> {infoData.name} </TVTitle>
             <TVContent>
                 <TVOverview> {infoData.overview ? infoData.overview : "내용이 없습니다."} </TVOverview>
