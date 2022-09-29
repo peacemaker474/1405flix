@@ -28,18 +28,16 @@ function SearchPage() {
         {
             queryKey: ['search', 'movies'],
             queryFn: () => getSearchMovie(keyword || ""),
-            refetchOnWindowFocus: false,
             cacheTime: 0,
         },
         {
             queryKey: ['search', 'TVShow'],
             queryFn: () => getSearchTV(keyword || ""),
-            refetchOnWindowFocus: false,
             cacheTime: 0,
         }
     ]);
 
-    const isLoading = searchData?.some((data) => data.isLoading);
+    const isLoading = searchData.some((data) => data.isLoading);
 
     const handleMovieDetail = useCallback((movieId: string) => () => {
         navigate(`/search/movie/${movieId}`)

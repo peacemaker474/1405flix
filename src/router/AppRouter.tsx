@@ -6,13 +6,13 @@ import TVShowPage from "../pages/TVShowPage";
 function AppRouter() {
     return (
         <Routes>
-            {["/", "/movies/:movieId"]?.map((path) => (
+            {["/", "/movies/:movieId"].map((path) => (
                 <Route key={path} path={path} element={<HomePage />} />
             ))}
-            {["/tvShows", "/tvShows/:tvId"]?.map((path) => (
+            {["/tvShows", "/tvShows/:tvId"].map((path) => (
                 <Route key={path} path={path} element={<TVShowPage />} />
             ))}
-            {["/search", "/search/movie/:movieId", "/search/tvShows/:tvId"]?.map((path) => (
+            {["/search", "/search/movie/:movieId", "/search/tvShows/:tvId"].map((path) => (
                 <Route key={path} path={path} element={<SearchPage />} />
             ))}
         </Routes>

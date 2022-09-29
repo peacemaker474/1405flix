@@ -8,15 +8,15 @@ import { InfoBox, InfoTitle, LeftButton, RightButton, SliderList, SliderLists, S
 interface ITVShowsProps {
     tvsData: ITVShow[];
     handleMoveDetail: (tvId: string) => void;
-    offset: number;
     kind: string;
     title?: string | undefined | null;
 }
 
-function TVShowsSlider({ tvsData, handleMoveDetail, offset, kind, title }: ITVShowsProps) {
+function TVShowsSlider({ tvsData, handleMoveDetail, kind, title }: ITVShowsProps) {
     const [index, setIndex] = useState(0);
     const [isLeaving, setIsLeaving] = useState(false);
     const [direction, setDirection] = useState(0);
+    const offset = 6;
     const maxIndex = Math.floor(tvsData?.length / offset) - 1;
 
     const handleCheckLeaving = () => setIsLeaving(prev => !prev);

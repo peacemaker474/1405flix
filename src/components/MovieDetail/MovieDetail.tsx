@@ -38,10 +38,9 @@ function MovieDetail({ detailLayout }: IDetailProps) {
             <MovieDetailWrapper key={detailLayout} layoutId={detailLayout}>
                 <CancelBtn onClick={handleHomeClick}> ✖ </CancelBtn>
                 {isLoading ? <LoadingPage /> :
-                    detailData &&
                     <>
-                        <DetailInfo infoData={detailData[0].data!} />
-                        <DetailVideo videoData={detailData[1].data.results!} />
+                        <DetailInfo infoData={detailData[0].data || []} />
+                        <DetailVideo videoData={detailData[1].data.results || []} />
                     </>
                 }
             </MovieDetailWrapper>

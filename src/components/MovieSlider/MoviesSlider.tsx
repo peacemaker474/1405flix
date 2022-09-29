@@ -9,14 +9,14 @@ interface IMovieSliderProps {
     movieData: IMovie[];
     handleMoveDetail: (movieId: string) => void;
     kind: string;
-    offset: number;
     title?: string | undefined | null;
 }
 
-function MoviesSlider({ movieData, handleMoveDetail, offset, kind, title }: IMovieSliderProps) {
+function MoviesSlider({ movieData, handleMoveDetail, kind, title }: IMovieSliderProps) {
     const [index, setIndex] = useState(0);
     const [isLeaving, setIsLeaving] = useState(false);
     const [direction, setDirection] = useState(0);
+    const offset = 6;
     const maxIndex = Math.floor(movieData?.length / offset) - 1;
 
     const handleDecreaseIndex = (newDirection: number) => () => {

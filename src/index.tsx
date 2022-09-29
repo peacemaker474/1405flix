@@ -10,7 +10,13 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import GlobalStyles from './styles/GlobalStyles';
 import { theme } from './styles/theme';
 
-const client = new QueryClient();
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    }
+  }
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

@@ -14,29 +14,28 @@ function HomePage() {
         {
             queryKey: ['movies', 'nowPlaying'],
             queryFn: () => getNowPlaying(),
-            staleTime: 1800 * 1000
+            staleTime: 1800 * 1000,
         },
         {
             queryKey: ["movies", "popular"],
             queryFn: () => getPopularMovie(),
-            staleTime: 1800 * 1000
+            staleTime: 1800 * 1000,
         },
         {
             queryKey: ["movies", "topRated"],
             queryFn: () => getTopRatedMovie(),
-            staleTime: 1800 * 1000
+            staleTime: 1800 * 1000,
         },
         {
             queryKey: ["movies", "upComing"],
             queryFn: () => getUpcomingMovie(),
-            staleTime: 1800 * 1000
+            staleTime: 1800 * 1000,
         },
     ]);
 
-    const isLoading = movieData?.some((data) => data.isLoading);
+    const isLoading = movieData.some((data) => data.isLoading);
 
     const navigate = useNavigate();
-    const offset = 6;
     const detailMatch = useMatch("/movies/:movieId");
 
     const handleMoveDetail = useCallback((movieId: string) => {
@@ -47,7 +46,7 @@ function HomePage() {
 
     return (
         <Wrapper>
-            <Banner bgPhoto={makePath(movieData[0].data.results[0].backdrop_path || "")}>
+            <Banner bgPhoto={makePath(movieData[0].data.results[0].backdrop_path || movieData[0].data.results[0].poster_path)}>
                 <SliderTitle> 지금 재생중인 영화 </SliderTitle>
                 <BannerTitle> {movieData[0].data.results[0].title} </BannerTitle>
                 <BannerOverView> {movieData[0].data.results[0].overview} </BannerOverView>
@@ -57,27 +56,23 @@ function HomePage() {
                 <MoviesSlider
                     movieData={movieData[0].data?.results.slice(1) || []}
                     handleMoveDetail={handleMoveDetail}
-                    offset={offset}
                     kind="now"
                 />
                 <MoviesSlider
                     movieData={movieData[1].data?.results || []}
                     handleMoveDetail={handleMoveDetail}
-                    offset={offset}
                     kind="moviePopular"
                     title="현재 인기가 많은 영화"
                 />
                 <MoviesSlider
                     movieData={movieData[2].data?.results || []}
                     handleMoveDetail={handleMoveDetail}
-                    offset={offset}
                     kind="topRated"
                     title="현재까지 가장 인기많은 영화"
                 />
                 <MoviesSlider
                     movieData={movieData[3].data?.results || []}
                     handleMoveDetail={handleMoveDetail}
-                    offset={offset}
                     kind="upcoming"
                     title="곧 개봉할 영화"
                 />
@@ -101,16 +96,17 @@ const Banner = styled.div<{ bgPhoto: string }>`
     padding: 60px;
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url(${(props) => props.bgPhoto});
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 
     h1 {
         position: absolute;
-        top: 25%;
+        top: 20%;
         left: 5%;
         font-size: 3rem;
         font-weight: bold;
 
         @media ${({ theme }) => theme.device.medium} {
-            top: 15%;
             font-size: 3.5rem;
         }
 
@@ -119,7 +115,7 @@ const Banner = styled.div<{ bgPhoto: string }>`
         }
 
         @media ${({ theme }) => theme.device.extraLarge} {
-            font-size: 5rem;
+            font-size: 4.5rem;
         }
     }
 `;

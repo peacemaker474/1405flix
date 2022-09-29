@@ -30,7 +30,7 @@ interface IDetailProp {
 function DetailInfo({ infoData }: IDetailProp) {
     return (
         <>
-            <DetailCover bgPhoto={makePath(infoData.backdrop_path ? infoData.backdrop_path : infoData.poster_path, "w500")} />
+            <DetailCover bgPhoto={makePath(infoData.backdrop_path || infoData.poster_path, "w500")} />
             <MovieTitle> {infoData.title} </MovieTitle>
             <MovieContent>
                 <MovieOverview> {infoData.overview} </MovieOverview>

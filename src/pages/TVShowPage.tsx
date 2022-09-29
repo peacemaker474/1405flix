@@ -19,7 +19,7 @@ function TVShowPage() {
         {
             queryKey: ['TVShows', 'airing'],
             queryFn: () => getAiringTVShow(),
-            staleTime: 1800 * 1000
+            staleTime: 1800 * 1000,
         },
         {
             queryKey: ["TVShows", "topRated"],
@@ -33,10 +33,9 @@ function TVShowPage() {
         }
     ]);
 
-    const isLoading = tvShowsData?.some((tvShow) => tvShow.isLoading);
+    const isLoading = tvShowsData.some((tvShow) => tvShow.isLoading);
 
     const navigate = useNavigate();
-    const offset = 6;
     const detailTVMatch = useMatch("/tvShows/:tvId");
 
     const handleMoveDetail = useCallback((tvId: string) => {
@@ -58,30 +57,25 @@ function TVShowPage() {
                 <TVShowsSlider
                     tvsData={tvShowsData[0].data?.results.slice(1) || []}
                     handleMoveDetail={handleMoveDetail}
-                    offset={offset}
                     kind="ontheAir"
                 />
                 <TVShowsSlider
                     tvsData={tvShowsData[1].data?.results || []}
                     handleMoveDetail={handleMoveDetail}
-                    offset={offset}
                     kind="airing"
                     title="공개된 드라마"
                 />
                 <TVShowsSlider
                     tvsData={tvShowsData[2].data?.results || []}
                     handleMoveDetail={handleMoveDetail}
-                    offset={offset}
                     kind="tvPopular"
                     title="현재 인기중인 드라마"
                 />
                 <TVShowsSlider
                     tvsData={tvShowsData[3].data?.results || []}
                     handleMoveDetail={handleMoveDetail}
-                    offset={offset}
                     kind="tvTopRated"
                     title="현재까지 가장 인기있는 드라마"
-
                 />
             </Sliders>
             {detailTVMatch && <TVDetail detailLayout={detailTVMatch.params.tvId || ""} />}
@@ -103,26 +97,32 @@ const Banner = styled.div<{ bgPhoto: string }>`
     padding: 60px;
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url(${(props) => props.bgPhoto});
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 
     h1 {
         position: absolute;
-        top: 15%;
+        top: 20%;
         left: 5%;
-        font-size: 5rem;
+        font-size: 3rem;
         font-weight: bold;
 
+        @media ${({ theme }) => theme.device.medium} {
+            font-size: 3.5rem;
+        }
+
         @media ${({ theme }) => theme.device.large} {
-            font-size: 5rem;
+            font-size: 4rem;
         }
 
         @media ${({ theme }) => theme.device.extraLarge} {
-            font-size: 7rem;
+            font-size: 4.5rem;
         }
     }
 `;
 
 const BannerTitle = styled.h2`
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin-bottom: 20px;
 
     @media ${({ theme }) => theme.device.large} {
@@ -139,6 +139,19 @@ const BannerOverView = styled.p`
     font-size: 1.8rem;
     padding-left: 5px;
     line-height: 4rem;
+
+    @media ${({ theme }) => theme.device.extraSmall} {
+        font-size: 1.2rem;
+        line-height: 3rem;
+    }
+
+    @media ${({ theme }) => theme.device.small} {
+        font-size: 1.3rem;
+    }
+
+    @media ${({ theme }) => theme.device.medium} {
+        font-size: 1.5rem;
+    }
 
     @media ${({ theme }) => theme.device.large} {
         font-size: 1.8rem;
