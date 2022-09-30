@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ITVDetailInfo } from "../../type";
-import { makePath } from "../../utiles/makeImagePath";
+import { ITVDetailInfo } from "../../../type";
+import { makePath } from "../../../utiles/makeImagePath";
 
 interface ITVDetailProps {
     infoData: ITVDetailInfo;

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ITVShow } from '../../type';
-import { makePath } from '../../utiles/makeImagePath';
-import { boxVariants, imgVariants, infoVariants, sliderVariants } from '../../styles/variants';
-import { InfoBox, InfoTitle, LeftButton, RightButton, SliderList, SliderLists, SliderTitle, SliderWrapper, ToggleBtn } from '../../styles/Slider/wrapper';
+import { ITVShow } from '../../../type';
+import { makePath } from '../../../utiles/makeImagePath';
+import { boxVariants, imgVariants, infoVariants, sliderVariants } from '../../../styles/variants';
+import { InfoBox, InfoTitle, LeftButton, RightButton, SliderList, SliderLists, SliderTitle, SliderWrapper, ToggleBtn } from '../../../styles/Slider/wrapper';
 
 interface ITVShowsProps {
     tvsData: ITVShow[];

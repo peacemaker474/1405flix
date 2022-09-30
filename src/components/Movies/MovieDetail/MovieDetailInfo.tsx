@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { makePath } from "../../utiles/makeImagePath";
+import { makePath } from "../../../utiles/makeImagePath";
 
 interface IGenres {
     id: number;

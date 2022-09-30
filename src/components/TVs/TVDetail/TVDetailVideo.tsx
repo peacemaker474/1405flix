@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import YouTube from 'react-youtube';
-import { IVideo } from '../../type';
+import { IVideo } from '../../../type';
 
 interface IVideoProps {
     videoData: IVideo[];
 }
 
 
-function DetailVideo({ videoData }: IVideoProps) {
+function TVDetailVideo({ videoData }: IVideoProps) {
 
     return (
         <VideoWrapper>
@@ -17,9 +17,6 @@ function DetailVideo({ videoData }: IVideoProps) {
                     {videoData.map((video) => (
                         <YouTube
                             key={video.id}
-                            style={{
-                                marginBottom: 20,
-                            }}
                             videoId={video.key}
                             opts={{
                                 playerVars: {
@@ -34,7 +31,7 @@ function DetailVideo({ videoData }: IVideoProps) {
     );
 }
 
-export default DetailVideo;
+export default TVDetailVideo;
 
 const VideoWrapper = styled.div`
     width: 90%;

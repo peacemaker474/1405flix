@@ -3,57 +3,55 @@ import { useCallback } from 'react';
 import { useQueries } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { getDetailTVs, getTVsVideo } from '../../network/api';
-import LoadingPage from '../../pages/LoadingPage';
-import { CancelBtn } from '../../styles/Common/Button';
-import TVDetailInfo from './TVDetailInfo';
-import TVDetailVideo from './TVDetailVideo';
+import { getDetailMovie, getMovieVideos } from '../../../network/api';
+import LoadingPage from '../../../pages/LoadingPage';
+import { CancelBtn } from '../../../styles/Common/Button';
+import DetailInfo from './MovieDetailInfo';
+import DetailVideo from './MovieDetailVideo';
 
 interface IDetailProps {
     detailLayout: string;
 }
 
 
-function TVDetail({ detailLayout }: IDetailProps) {
-    const tvDetailData = useQueries([
+function MovieDetail({ detailLayout }: IDetailProps) {
+    const detailData = useQueries([
         {
-            queryKey: ['tvShowDetail', 'Information'],
-            queryFn: () => getDetailTVs(detailLayout + ""),
+            queryKey: ['movieDetail', 'Information'],
+            queryFn: () => getDetailMovie(detailLayout + ""),
         },
         {
-            queryKey: ['tvShowDetail', "Videos"],
-            queryFn: () => getTVsVideo(detailLayout + ""),
+            queryKey: ['movieDetail', 'Videos'],
+            queryFn: () => getMovieVideos(detailLayout + ""),
         }
     ]);
 
-    const isLoading = tvDetailData?.some((data) => data.isLoading);
+    const isLoading = detailData?.some((data) => data.isLoading);
 
     const navigate = useNavigate();
     const handleHomeClick = useCallback(() => {
-        navigate(-1);
+        navigate(-1)
     }, [navigate]);
 
     return (
         <AnimatePresence>
-            <TVsDetailWrapper key={detailLayout} layoutId={detailLayout}>
+            <MovieDetailWrapper key={detailLayout} layoutId={detailLayout}>
                 <CancelBtn onClick={handleHomeClick}> ✖ </CancelBtn>
-                {
-                    isLoading ? <LoadingPage /> :
-                        tvDetailData &&
-                        <>
-                            <TVDetailInfo infoData={tvDetailData[0].data!} />
-                            <TVDetailVideo videoData={tvDetailData[1].data.results!} />
-                        </>
+                {isLoading ? <LoadingPage /> :
+                    <>
+                        <DetailInfo infoData={detailData[0].data || []} />
+                        <DetailVideo videoData={detailData[1].data.results || []} />
+                    </>
                 }
-            </TVsDetailWrapper>
+            </MovieDetailWrapper>
             <DetailOverlay onClick={handleHomeClick} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
         </AnimatePresence>
     );
 }
 
-export default TVDetail;
+export default MovieDetail;
 
-const TVsDetailWrapper = styled(motion.div)`
+const MovieDetailWrapper = styled(motion.div)`
     width: 60vw;
     height: 100vh;
     position: fixed;
