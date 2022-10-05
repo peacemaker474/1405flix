@@ -1,7 +1,7 @@
 import { useQueries } from "react-query";
 import { getSearchMovie, getSearchTV } from "../network/api";
 import LoadingPage from "./LoadingPage";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const SearchComponents = lazy(() => import("../components/Search/Search"));
@@ -24,6 +24,13 @@ function SearchPage() {
             cacheTime: 0,
         }
     ]);
+
+    useEffect(() => {
+        if (keyword) {
+            searchData[0].refetch();
+            searchData[1].refetch();
+        }
+    }, [keyword])
 
     return (
         <Suspense fallback={<LoadingPage />}>
