@@ -39,6 +39,7 @@ export const SearchList = styled(motion.li)`
     height: 250px;
     border-radius: 5px;
     overflow: hidden;
+    cursor: pointer;
 
     img {
         width: 100%;

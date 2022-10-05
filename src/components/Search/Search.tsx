@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MovieDetail from "../Movies/MovieDetail/MovieDetail";
@@ -24,11 +24,6 @@ function Search({ searchData, keyword }: any) {
     const handleTVDetail = useCallback((tvId: string) => () => {
         navigate(`/search/tvShows/${tvId}`)
     }, [navigate]);
-
-    useEffect(() => {
-        searchData[0].refetch();
-        searchData[1].refetch();
-    }, [keyword])
 
     return (
         <SearchWrapper>
